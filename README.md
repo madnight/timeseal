@@ -1,12 +1,10 @@
 # timeseal
-Chess timeseal exploit
-
-Zero time lag Modification:
+Chess timeseal exploit, time lag modification
 
 ![alt text](https://asmrev.files.wordpress.com/2014/06/untitled-12.jpg?w=855 )
 
 
-Random time lag Modification: 
+Random time lag modification: 
 <pre><code>
 00401421   E8 CA0D0000      CALL timeseal.004021F0  
 00401426   25 FF030000      AND EAX,3FF  
@@ -18,17 +16,12 @@ Random time lag Modification:
 </code></pre>
 
 
-This hook is hardcoded with Ollydbg into the timeseal.exe used by Winboard.  
-Timeseal usually calculates the Lag via two Timestamps.  
-I modified the Timestamps by adding an Random Offset (CALL timeseal.004021F0 := rand()).  
-AND EAX,3FF is our asm Modulo Function rand()%1024 + fixed offset hex 101.  
+This hook is hardcoded with OllyDbg into the timeseal binary. Timeseal usually calculates the lag via two timestamps. The timestamps are modified by adding an random offset (CALL timeseal.004021F0 := rand()), while AND EAX,3FF is the asm modulo function rand()%1024 + fixed offset hex 101.  
 
-Download: http://www.file-upload.net/download-9041753/timeseal.exe.html  
-Mirror: http://www.share-online.biz/dl/XAPVA07NLXKE  
+Features:
 
-* You cant loose on time (even under 0 seconds)
+* You cant loose on time
 * You will be always faster than your opponent
-* It its not so obvious because of the random offset, opponents think that you are lagging
-* It is also possible to hook into timeseal via DLL.
+* It seems legit, opponents think that you are lagging
 
-Blog: https://asmrev.wordpress.com/
+This exploit has been reported serval times to chess servers that do allow clientside timeseal, but some chess servers just dont care.
